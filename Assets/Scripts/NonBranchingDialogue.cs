@@ -5,7 +5,7 @@ using UnityEngine;
 public class NonBranchingDialogue : MonoBehaviour
 {
     public float radius;
-    public AudioClip[] clips;
+    public NPCAudioContainer audioData;
     AudioSource audioSource;
 
     int _audioPos = 0;
@@ -14,9 +14,9 @@ public class NonBranchingDialogue : MonoBehaviour
         get { return _audioPos; }
         set
         {
-            if(value >= clips.Length)
+            if(value >= audioData.clips.Length)
             {
-                value = clips.Length - 1;
+                value = audioData.clips.Length - 1;
             }
             _audioPos = value;
         }
@@ -42,7 +42,7 @@ public class NonBranchingDialogue : MonoBehaviour
 
     void PlayNextAudioClip()
     {
-        audioSource.clip = clips[audioPos];
+        audioSource.clip = audioData.clips[audioPos];
         audioSource.Play();
         audioPos++;
     }
